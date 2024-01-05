@@ -11,5 +11,5 @@ management:
       exposure:
         include: health
 jwt:
-  pemPath: "${JWT_PUBLIC_KEY_FILE:}"
+  pem-path: "${JWT_PUBLIC_KEY_FILE:}"
   algorithm: "${JWT_ALGORITHM:}"

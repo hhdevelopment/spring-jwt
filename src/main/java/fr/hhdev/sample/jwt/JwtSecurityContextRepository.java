@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,8 +24,11 @@ import reactor.core.publisher.Mono;
 @Component
 public class JwtSecurityContextRepository implements ServerSecurityContextRepository {
 
-  @Autowired
   private PublicKey publicKey;
+
+  public JwtSecurityContextRepository(PublicKey publicKey) {
+    this.publicKey = publicKey;
+  }
 
   @Override
   public Mono<SecurityContext> load(ServerWebExchange swe) {

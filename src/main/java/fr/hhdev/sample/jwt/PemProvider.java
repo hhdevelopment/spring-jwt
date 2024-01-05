@@ -11,7 +11,7 @@ import java.security.spec.X509EncodedKeySpec;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.io.pem.PemObject;
 import org.bouncycastle.util.io.pem.PemReader;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,19 +21,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PemProvider {
 
-
-  @Autowired
-  JwtProperties jwtProperties;
-
   @Bean
-  PublicKey getPublicKey() {
+  PublicKey getPublicKey(@Value("${jwt.pem-path}") String pemPath, @Value("${jwt.algorithm}") String algorithm) {
     Security.addProvider(new BouncyCastleProvider());
-    File file = new File(jwtProperties.getPemPath());
+    File file = new File(pemPath);
     try (PemReader pemReader = new PemReader(new FileReader(file))) {
       PemObject pemObject = pemReader.readPemObject();
       byte[] content = pemObject.getContent();
       X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(content);
-      return getKeyFactory(jwtProperties.getAlgorithm()).generatePublic(keySpecX509);
+      return getKeyFactory(algorithm).generatePublic(keySpecX509);
     } catch (Exception e) {
       e.printStackTrace();
     }

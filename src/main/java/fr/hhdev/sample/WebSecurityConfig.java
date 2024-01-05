@@ -1,6 +1,5 @@
 package fr.hhdev.sample;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
@@ -15,8 +14,11 @@ import fr.hhdev.sample.jwt.JwtSecurityContextRepository;
 @EnableReactiveMethodSecurity()
 public class WebSecurityConfig {
 
-  @Autowired
   private JwtSecurityContextRepository securityContextRepository;
+  
+  public WebSecurityConfig(JwtSecurityContextRepository securityContextRepository) {
+    this.securityContextRepository = securityContextRepository;
+  }
 
   @Bean
   GrantedAuthorityDefaults grantedAuthorityDefaults() {
