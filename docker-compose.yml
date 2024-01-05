@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  spring-jwt:
+    image: ghcr.io/hhdevelopment/spring-jwt
+    secrets:
+      - jwt_public_key
+    environment:
+      JWT_PUBLIC_KEY_FILE: /run/secrets/jwt_public_key
+      JWT_ALGORITHM: RS256
+    networks:
+      - dnet
+
+secrets:
+  jwt_public_key:
+    file: ./jwt_public_key.pem
+
+networks:
+  dnet:
