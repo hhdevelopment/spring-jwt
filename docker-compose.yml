@@ -3,6 +3,8 @@ version: '3.8'
 services:
   spring-jwt:
     image: ghcr.io/hhdevelopment/spring-jwt
+    ports:
+      - 9292:8080
     secrets:
       - jwt_public_key
     environment:
@@ -13,7 +15,7 @@ services:
 
 secrets:
   jwt_public_key:
-    file: ./jwt_public_key.pem
+    external: true
 
 networks:
   dnet:

@@ -29,17 +29,20 @@ mvn springboot:run
 ### build image
 
 ```shell
-docker build -t ghcr.io/hhdevelopment:latest --build-arg GIT_TAG_REV=$(git rev-parse HEAD) .
+docker build -t ghcr.io/hhdevelopment/spring-jwt:latest --build-arg GIT_TAG_REV=$(git rev-parse HEAD) .
 ```
 
 ### launch docker
 
 ```shell
-docker run -p 9292:9292 -e JWT_PUBLIC_KEY_FILE=../jwt_public_key.pem -e JWT_ALGORITHM=RSA256 ghcr.io/hhdevelopment:latest
+docker run -p 9292:8080 -v /absolutepath/jwt_public_key.pem:/jwt_public_key.pem -e JWT_PUBLIC_KEY_FILE=/jwt_public_key.pem -e JWT_ALGORITHM=RSA256 ghcr.io/hhdevelopment/spring-jwt:latest
 ```
 
 ### launch swarm
 
 ```shell
+# create secret
+docker secret create jwt_public_key ../jwt_public_key.pem
+# deploy
 docker stack deploy -c docker-compose.yml $STACKNAME
 ```
