@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "jwt.pem-path",
+      "type": "java.lang.String",
+      "description": "Path of pem file"
+    },
+    {
+      "name": "jwt.algorithm",
+      "type": "java.lang.String",
+      "description": "Algorithm used to sign the token"
+    }
+  ]
+}

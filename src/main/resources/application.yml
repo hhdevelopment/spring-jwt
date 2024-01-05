@@ -1,0 +1,15 @@
+server:
+  port: ${PORT:8080}
+spring:
+  config:
+    import:
+      - "optional:file:env.properties"
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: health
+jwt:
+  pemPath: "${JWT_PUBLIC_KEY_FILE:}"
+  algorithm: "${JWT_ALGORITHM:}"
