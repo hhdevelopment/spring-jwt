@@ -27,4 +27,5 @@ public class TestController {
   @PreAuthorize("hasRole('ROLE_UNKNOWN')")
   Mono<Authentication> principalNot(Authentication authentication) {
     return Mono.just(authentication);
-  }}
+  }
+}
