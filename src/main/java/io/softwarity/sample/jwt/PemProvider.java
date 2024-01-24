@@ -5,15 +5,15 @@ import java.io.FileReader;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
-import java.security.Security;
 import java.security.spec.X509EncodedKeySpec;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.io.pem.PemObject;
 import org.bouncycastle.util.io.pem.PemReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import lombok.SneakyThrows;
 
 /**
  * Read the public key from the pem file and provide it as bean PublicKey
@@ -23,17 +23,27 @@ public class PemProvider {
 
   @Bean
   PublicKey getPublicKey(@Value("${jwt.pem-path}") String pemPath, @Value("${jwt.algorithm}") String algorithm) {
-    Security.addProvider(new BouncyCastleProvider());
     File file = new File(pemPath);
     try (PemReader pemReader = new PemReader(new FileReader(file))) {
       PemObject pemObject = pemReader.readPemObject();
-      byte[] content = pemObject.getContent();
-      X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(content);
-      return getKeyFactory(algorithm).generatePublic(keySpecX509);
+      return getPublicKey(algorithm, pemObject.getContent());
     } catch (Exception e) {
       e.printStackTrace();
     }
     return null;
+  }
+
+/**
+   * Retourne une clé publique à partir de l'algorithme et de la clé publique au format DER.
+   * @param algo
+   * @param publicKey
+   * @return
+   */
+  @SneakyThrows
+  private PublicKey getPublicKey(String algo, byte[] publicKey) {
+    X509EncodedKeySpec spec = new X509EncodedKeySpec(publicKey);
+    KeyFactory keyFactory = getKeyFactory(algo);
+    return keyFactory.generatePublic(spec);
   }
 
   /**
@@ -55,5 +65,4 @@ public class PemProvider {
     }
     return KeyFactory.getInstance(keyAlgorithm);
   }
-
 }

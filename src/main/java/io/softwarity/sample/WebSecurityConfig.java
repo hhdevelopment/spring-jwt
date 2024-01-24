@@ -12,7 +12,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import io.softwarity.sample.jwt.JwtSecurityContextRepository;
 
 @Configuration
-@EnableReactiveMethodSecurity()
+@EnableReactiveMethodSecurity
 public class WebSecurityConfig {
 
   private JwtSecurityContextRepository securityContextRepository;

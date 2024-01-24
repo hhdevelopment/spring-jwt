@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,14 +19,15 @@ import io.jsonwebtoken.Jwts;
 import reactor.core.publisher.Mono;
 
 /**
- * From ServerWebExchange extract jwtToken to Claims and then to SecurityContextImpl
+ * From ServerWebExchange extract jwtToken to Claims and then to
+ * SecurityContextImpl
  */
 @Component
 public class JwtSecurityContextRepository implements ServerSecurityContextRepository {
 
   private PublicKey publicKey;
 
-  public JwtSecurityContextRepository(@Lazy PublicKey publicKey) {
+  public JwtSecurityContextRepository(/* @Lazy  */PublicKey publicKey) {
     this.publicKey = publicKey;
   }
 
