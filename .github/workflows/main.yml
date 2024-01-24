@@ -34,4 +34,4 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - run: |
           ssh -o StrictHostKeyChecking=no github_action@demo.hhdev.fr "docker login -u hhfrancois -p ${{ secrets.TOKEN_READ_PACKAGE }} https://ghcr.io"
-          ssh -o StrictHostKeyChecking=no github_action@demo.hhdev.fr "docker service update --image ghcr.io/hhdevelopment/spring-jwt@\$(docker pull ghcr.io/hhdevelopment/spring-jwt:latest | grep sha | sed 's/Digest: //') --label-add updated_at=$(date -u -Iseconds) panoptes_spring-jwt"
+          ssh -o StrictHostKeyChecking=no github_action@demo.hhdev.fr "docker service update --image ghcr.io/${{ github.repository }}@\$(docker pull ghcr.io/${{ github.repository }}:latest | grep sha | sed 's/Digest: //') --label-add updated_at=$(date -u -Iseconds) panoptes_spring-jwt"
