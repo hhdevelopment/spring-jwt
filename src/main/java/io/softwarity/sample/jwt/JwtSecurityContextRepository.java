@@ -1,10 +1,11 @@
-package fr.hhdev.sample.jwt;
+package io.softwarity.sample.jwt;
 
 import java.security.PublicKey;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,7 +27,7 @@ public class JwtSecurityContextRepository implements ServerSecurityContextReposi
 
   private PublicKey publicKey;
 
-  public JwtSecurityContextRepository(PublicKey publicKey) {
+  public JwtSecurityContextRepository(@Lazy PublicKey publicKey) {
     this.publicKey = publicKey;
   }
 

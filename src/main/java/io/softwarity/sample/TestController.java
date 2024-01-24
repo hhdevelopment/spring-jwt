@@ -1,4 +1,4 @@
-package fr.hhdev.sample;
+package io.softwarity.sample;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

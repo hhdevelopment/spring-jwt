@@ -1,4 +1,4 @@
-package fr.hhdev.sample.jwt;
+package io.softwarity.sample.jwt;
 
 import java.io.File;
 import java.io.FileReader;

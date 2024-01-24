@@ -9,7 +9,7 @@
     <version>3.2.2</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
-  <groupId>fr.hhdev</groupId>
+  <groupId>io.softwarity</groupId>
   <artifactId>spring-jwt</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>spring-jwt</name>

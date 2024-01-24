@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   spring-jwt:
-    image: ghcr.io/hhdevelopment/spring-jwt
+    image: ghcr.io/softwarity/spring-jwt
     ports:
       - 9292:8080
     secrets:
