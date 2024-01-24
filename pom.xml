@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.1</version>
+    <version>3.2.2</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
   <groupId>fr.hhdev</groupId>
@@ -39,11 +39,6 @@
       <version>1.70</version>
     </dependency>
     <!-- OPENAPI -->
-    <!-- <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-      <version>2.3.0</version>
-    </dependency> -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webflux-api</artifactId>
@@ -102,10 +97,6 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>io.github.git-commit-id</groupId>
-				<artifactId>git-commit-id-maven-plugin</artifactId>
 			</plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
